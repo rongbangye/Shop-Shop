@@ -1,8 +1,8 @@
 // createContext will be used to instantiate a new Context object.
 // we are creating a container to hold our global state data and functionality
 // useContext is another React Hook that will allow us to use ethe state created from the createContext function
-import React, { createContext, useContext } from 'react';
-import { useProductReducer } from './reducers';
+import React, { createContext, useContext } from "react";
+import { useProductReducer } from "./reducers";
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
@@ -16,7 +16,7 @@ const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useProductReducer({
     products: [],
     categories: [],
-    currentCategory: '',
+    currentCategory: "",
   });
   // use this confirm it works
   console.log(state);
@@ -27,5 +27,10 @@ const StoreProvider = ({ value = [], ...props }) => {
 const useStoreContext = () => {
   return useContext(StoreContext);
 };
+
+/**
+ * Now we can use our useStoreContext() function
+ * to grab the state from <StoreProvider> component and use returning dispatch method to update it
+ */
 
 export { StoreProvider, useStoreContext };
